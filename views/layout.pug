@@ -1,0 +1,22 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/resources/bootstrap/dist/css/bootstrap.min.css')
+    block css
+  body
+
+    ul.nav
+      li.nav-item
+        a.nav-link.active(href='/') Home
+      li.nav-item
+        a.nav-link(href="/admin/add") Add Website
+    
+    .container
+      block content
+
+    script(src="/resources/jquery/dist/jquery.min.js")
+    script(src="/resources/bootstrap/dist/js/bootstrap.min.js")
+
+    block js
+      
