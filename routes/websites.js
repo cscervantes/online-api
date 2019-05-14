@@ -21,4 +21,18 @@ router.post('/store', function(req, res){
     })
 })
 
+router.post('/update/:id', function(req, res){
+    model.websites.findByIdAndUpdate(req.params.id, req.body, function(err, result){
+        if(err) res.json(err);
+        else res.json(result)
+    })
+})
+
+router.get('/get_website_urls', function(req, res){
+    model.websites.find({}).exec(function(err, result){
+        if(err) res.json(err);
+        else res.json(result)
+    })
+})
+
 module.exports = router

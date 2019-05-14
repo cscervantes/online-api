@@ -1,9 +1,19 @@
 var express = require('express');
 var router = express.Router();
-var model = require('../models')
+var models = require('../models')
 
 router.get('/add', function(req, res, next){
     res.render('website/add', {title: 'Add new Website'})
 })
 
+router.get('/edit/:id', function(req, res, next){
+    models.websites.findById(req.params.id, {}).exec(function(err, result){
+        if(err){
+            next(err)
+        }else{
+            res.render('website/edit', {title: 'Edit '+req.params.id, data: result})
+        }
+    })
+    
+})
 module.exports = router

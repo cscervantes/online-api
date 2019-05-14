@@ -10,7 +10,7 @@ module.exports = function (app) {
     var map = function (url, routeFile) {
         url = '/'+url
         routeFile = routeFile || url;
-        console.log(routeFile)
+        // console.log(routeFile)
         app.use(url, require('./routes/' + routeFile));
     };
 

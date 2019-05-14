@@ -1,5 +1,239 @@
 extends ../layout
-
+block css
+    style.
+        fieldset 
+        {
+            border: 1px solid #ddd !important;
+            margin: 0;
+            xmin-width: 0;
+            padding: 10px;       
+            position: relative;
+            border-radius:4px;
+            background-color:#f5f5f5;
+            padding-left:10px!important;
+        }
+        legend
+        {
+            font-size:14px;
+            font-weight:bold;
+            margin-bottom: 0px; 
+            width: 35%; 
+            border: 1px solid #ddd;
+            border-radius: 4px; 
+            padding: 5px 5px 5px 10px; 
+            background-color: #ffffff;
+        }
 block content
-  h1= title
-  p Edit new website
+    h1= title
+
+    fieldset.form-group
+
+        legend Basic Information (IMPORTANT)
+
+        div.form-group
+            label(for="website_name") Website Name 
+            input#website_name(type="text", value=data.website_name, name="website_name", required="required", class="form-control")
+        
+        div.form-group
+            label(for="website_url") Website Url
+            input#website_url(type="text", value=data.website_url, name="website_url", required="required", class="form-control")
+
+        div.form-group
+            label(for="fqdn") FQDN
+            input#fqdn(type="text", name="fqdn", value=data.fqdn, disabled="disabled", class="form-control")
+        
+        div.form-group
+            label(for="category") Category
+            select#category(name="category", class="form-control")
+                option(value="News") News
+                option(value="Blog") Blog
+        
+        div.form-group
+            label(for="region") Region
+            input#region(type="text", name="region", value=data.region, required="required", class="form-control")
+
+        div.form-group
+            label(for="country") Country
+            input#country(type="text", name="country", value=data.country, required="required", class="form-control")
+
+        div.form-group
+            label(for="needs_endslash") Needs End Slash
+            select#needs_endslash(name="needs_endslash", class="form-control")
+                option(value="false") False
+                option(value="true") True
+
+    fieldset.form-group
+
+        legend Scraper Information (VERY IMPORTANT)
+
+        div.form-group
+            label(for="scraper_setting") Scraper Setting
+            select#scraper_setting(name="scraper_setting", class="form-control")
+                option(value="REGEX_CONFIG") REGEX_CONFIG
+                option(value="SECTION_CONFIG") SECTION_CONFIG
+                option(value="BOTH_CONFIG") BOTH_CONFIG
+
+        
+        div.form-group
+            label(for="regex_config") Regex Config
+            .form-group
+                label(for="regex_config_starts") Skip url starts with
+                textarea#regex_config_starts.form-control(name="regex_config_starts", cols="30", rows="5")=data.regex_config.skip_url_starts_with
+            .form-group
+                label(for="regex_config_ends") Skip url ends with
+                textarea#regex_config_ends.form-control(name="regex_config_ends", cols="30", rows="5")=data.regex_config.skip_url_starts_with
+            .form-group
+                label(for="regex_config_contains") Skip url contains with
+                textarea#regex_config_contains.form-control(name="regex_config_contains", cols="30", rows="5")=data.regex_config.skip_url_starts_with
+            .form-group
+                label(for="regex_config_exact") Skip exact url
+                textarea#regex_config_exact.form-control(name="regex_config_exact", cols="30", rows="5")=data.regex_config.skip_exact_url
+            .form-group
+                label(for="regex_config_accept") Accept Only
+                textarea#regex_config_accept.form-control(name="regex_config_accept", cols="30", rows="5")=data.regex_config.accept_only
+
+        div.form-group
+            label(for="section_config") Section Config
+            .form-group
+                label(for="section_config_starts") Skip url starts with
+                textarea#section_config_starts.form-control(name="section_config_starts", cols="30", rows="5")=data.section_config.skip_url_starts_with
+            .form-group
+                label(for="section_config_ends") Skip url ends with
+                textarea#section_config_ends.form-control(name="section_config_ends", cols="30", rows="5")=data.section_config.skip_url_ends_with
+            .form-group
+                label(for="section_config_contains") Skip url contains with
+                textarea#section_config_contains.form-control(name="section_config_contains", cols="30", rows="5")=data.section_config.skip_url_contains_with
+            .form-group
+                label(for="section_config_exact") Skip exact url
+                textarea#section_config_exact.form-control(name="section_config_exact", cols="30", rows="5")=data.section_config.skip_exact_url
+            .form-group
+                label(for="section_config_accept") Accept Only
+                textarea#section_config_accept.form-control(name="section_config_accept", cols="30", rows="5")=data.section_config.accept_only
+        
+        div.form-group
+            label(for="main_sections") Main Sections
+            textarea#main_sections.form-control(name="main_sections", cols="30", rows="5")=data.main_sections
+
+        div.form-group
+            label(for="sub_sections") Sub Sections
+            textarea#sub_sections.form-control(name="sub_sections", cols="30", rows="5")=data.sub_sections
+
+    button#add(type="button" class="btn btn-medium btn-primary") Update
+
+block js
+    script(src="/resources/string/dist/string.min.js")
+    script.
+        $('#add').click(function(){
+            var jsonData = {}
+            var website_name = $('#website_name').val()
+            var website_url = $('#website_url').val()
+            var fqdn = $('#fqdn').val()
+            var category = $('#category').val()
+            var region = $('#region').val() || null
+            var country = $('#country').val() || null
+            var needs_endslash = $('#needs_endslash').val()
+            var scraper_setting = $('#scraper_setting').val()
+            var regex_config = {
+                'skip_url_starts_with' : S($('#regex_config_starts').val()).split(',').map(function(v){
+                return S(v).trim().s
+            }) || null,
+                'skip_url_ends_with' : S($('#regex_config_ends').val()).split(',').map(function(v){
+                return S(v).trim().s
+            }) || null,
+                'skip_url_contains_with' : S($('#regex_config_contains').val()).split(',').map(function(v){
+                return S(v).trim().s
+            }) || null,
+                 'skip_exact_url' : S($('#regex_config_exact').val()).split(',').map(function(v){
+                    return S(v).trim().s
+                }) || null,
+                'accept_only' : S($('#regex_config_accept').val()).split(',').map(function(v){
+                    return S(v).trim().s
+                }) || null
+            }
+            var section_config = {
+                'skip_url_starts_with' : S($('#section_config_starts').val()).split(',').map(function(v){
+                return S(v).trim().s
+            }) || null,
+                'skip_url_ends_with' : S($('#section_config_ends').val()).split(',').map(function(v){
+                return S(v).trim().s
+            }) || null,
+                'skip_url_contains_with' : S($('#section_config_contains').val()).split(',').map(function(v){
+                return S(v).trim().s
+            }) || null,
+                 'skip_exact_url' : S($('#section_config_exact').val()).split(',').map(function(v){
+                    return S(v).trim().s
+                }) || null,
+                'accept_only' : S($('#section_config_accept').val()).split(',').map(function(v){
+                    return S(v).trim().s
+                }) || null
+            }
+            var main_sections = S($('#main_sections').val()).split(',').map(function(v){
+                return S(v).trim().s
+            }) || null
+            var sub_sections = S($('#sub_sections').val()).split(',').map(function(v){
+                return S(v).trim().s
+            }) || null
+
+
+            if(website_name.trim() && website_url.trim()){
+                jsonData.website_name = website_name
+                jsonData.website_url = website_url
+                jsonData.fqdn = fqdn
+                jsonData.category = category
+                jsonData.region = region
+                jsonData.country = country
+                jsonData.needs_endslash = needs_endslash
+                jsonData.scraper_setting = scraper_setting
+                jsonData.regex_config = regex_config
+                jsonData.section_config = section_config
+                jsonData.main_sections = main_sections
+                jsonData.sub_sections = sub_sections
+                //- console.log(jsonData)
+                $.ajax({
+                    dataType : "json",
+                    contentType: "application/json; charset=utf-8",
+                    url: '/websites/update/#{data._id}',
+                    method: 'POST',
+                    data: JSON.stringify(jsonData)
+                }).done(function(response){
+                    console.log(response)
+                }).fail(function(response){
+                    console.log(response)
+                })
+            }else{
+                alert('Website Name and Website Url are required')
+            }
+        })
+        
+        $(document).on('keyup', '#website_name', function(){
+            $(this).css({
+                'text-transform': 'capitalize'
+            })
+        })
+
+        $(document).on('keyup', '#region', function(){
+            $(this).css({
+                'text-transform': 'capitalize'
+            })
+        })
+
+        $(document).on('keyup', '#country', function(){
+            $(this).css({
+                'text-transform': 'capitalize'
+            })
+        })
+
+        $(document).on('change', '#website_url', function(){
+            $(this).css({
+                'text-transform': 'lowercase'
+            })
+            var t = $(this).val()
+            if(S(t).startsWith('http://') || S(t).startsWith('https://')){
+                var fqdn = S(t).splitLeft('/')[2]
+                $('#fqdn').val(fqdn)
+                $(this).val(S(t).splitRight('/', 1, -1)[0])
+            }else{
+                alert('Not a valid Website Url')
+                $(this).focus()
+            }
+        })

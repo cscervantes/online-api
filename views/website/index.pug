@@ -1,5 +1,17 @@
-extends .layout
+extends ../layout
 
 block content
   h1= title
   p List of Websites
+  table.table.table-bordered
+    thead
+      tr
+        th WEBSITE ID
+        th WEBSITE NAME
+    tbody
+      each d in data
+       tr
+        td=d.website_name
+        td
+          a(href="/admin/edit/"+d._id) Edit
+        

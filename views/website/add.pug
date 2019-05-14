@@ -87,6 +87,12 @@ block content
             .form-group
                 label(for="regex_config_contains") Skip url contains with
                 textarea#regex_config_contains.form-control(name="regex_config_contains", cols="30", rows="5")
+            .form-group
+                label(for="regex_config_exact") Skip exact url
+                textarea#regex_config_exact.form-control(name="regex_config_exact", cols="30", rows="5")
+            .form-group
+                label(for="regex_config_accept") Accept Only
+                textarea#regex_config_accept.form-control(name="regex_config_accept", cols="30", rows="5")
 
         div.form-group
             label(for="section_config") Section Config
@@ -99,7 +105,12 @@ block content
             .form-group
                 label(for="section_config_contains") Skip url contains with
                 textarea#section_config_contains.form-control(name="section_config_contains", cols="30", rows="5")
-
+            .form-group
+                label(for="section_config_exact") Skip exact url
+                textarea#section_config_exact.form-control(name="section_config_exact", cols="30", rows="5")
+            .form-group
+                label(for="section_config_accept") Accept Only
+                textarea#section_config_accept.form-control(name="section_config_accept", cols="30", rows="5")
         
         div.form-group
             label(for="main_sections") Main Sections
@@ -134,7 +145,10 @@ block js
                 'skip_url_contains_with' : S($('#regex_config_contains').val()).split(',').map(function(v){
                 return S(v).trim().s
             }) || null,
-                'accept_only' : S($('#regex_config_contains').val()).split(',').map(function(v){
+                 'skip_exact_url' : S($('#section_config_exact').val()).split(',').map(function(v){
+                    return S(v).trim().s
+                }) || null,
+                'accept_only' : S($('#section_config_accept').val()).split(',').map(function(v){
                     return S(v).trim().s
                 }) || null
             }
@@ -148,7 +162,10 @@ block js
                 'skip_url_contains_with' : S($('#section_config_contains').val()).split(',').map(function(v){
                 return S(v).trim().s
             }) || null,
-                'accept_only' : S($('#regex_config_contains').val()).split(',').map(function(v){
+                'skip_exact_url' : S($('#section_config_exact').val()).split(',').map(function(v){
+                    return S(v).trim().s
+                }) || null,
+                'accept_only' : S($('#section_config_accept').val()).split(',').map(function(v){
                     return S(v).trim().s
                 }) || null
             }
@@ -173,7 +190,7 @@ block js
                 jsonData.section_config = section_config
                 jsonData.main_sections = main_sections
                 jsonData.sub_sections = sub_sections
-                console.log(jsonData)
+                //- console.log(jsonData)
                 $.ajax({
                     dataType : "json",
                     contentType: "application/json; charset=utf-8",
