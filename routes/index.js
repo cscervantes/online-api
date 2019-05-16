@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
     if(err){
       next(err)
     }else{
-      console.log(result)
+      // console.log(result)
       res.render('website/index', { title: 'Express', data: result });
     }
   })

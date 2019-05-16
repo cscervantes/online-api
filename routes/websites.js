@@ -29,7 +29,7 @@ router.post('/update/:id', function(req, res){
 })
 
 router.get('/get_website_urls', function(req, res){
-    model.websites.find({}).exec(function(err, result){
+    model.websites.find({status: 'ACTIVE'}).exec(function(err, result){
         if(err) res.json(err);
         else res.json(result)
     })

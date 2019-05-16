@@ -68,36 +68,31 @@ block content
 
         legend Scraper Information (VERY IMPORTANT)
 
-        //- div.form-group
-        //-     label(for="scraper_setting") Scraper Setting
-        //-     select#scraper_setting(name="scraper_setting", class="form-control")
-        //-         option(value="REGEX_CONFIG") REGEX_CONFIG
-        //-         option(value="SECTION_CONFIG") SECTION_CONFIG
-        //-         option(value="BOTH_CONFIG") BOTH_CONFIG
-
         div.form-group
-            label(for="has_subsection") Has Subsection
-            select#has_subsection(name="has_subsection", class="form-control")
-                option(value="false") False
-                option(value="true") True
+            label(for="scraper_setting") Scraper Setting
+            select#scraper_setting(name="scraper_setting", class="form-control")
+                option(value="REGEX_CONFIG") REGEX_CONFIG
+                option(value="SECTION_CONFIG") SECTION_CONFIG
+                option(value="BOTH_CONFIG") BOTH_CONFIG
 
-        //- div.form-group
-        //-     label(for="regex_config") Regex Config
-        //-     .form-group
-        //-         label(for="regex_config_starts") Skip url starts with
-        //-         textarea#regex_config_starts.form-control(name="regex_config_starts", cols="30", rows="5")
-        //-     .form-group
-        //-         label(for="regex_config_ends") Skip url ends with
-        //-         textarea#regex_config_ends.form-control(name="regex_config_ends", cols="30", rows="5")
-        //-     .form-group
-        //-         label(for="regex_config_contains") Skip url contains with
-        //-         textarea#regex_config_contains.form-control(name="regex_config_contains", cols="30", rows="5")
-        //-     .form-group
-        //-         label(for="regex_config_exact") Skip exact url
-        //-         textarea#regex_config_exact.form-control(name="regex_config_exact", cols="30", rows="5")
-        //-     .form-group
-        //-         label(for="regex_config_accept") Accept Only
-        //-         textarea#regex_config_accept.form-control(name="regex_config_accept", cols="30", rows="5")
+        
+        div.form-group
+            label(for="regex_config") Regex Config
+            .form-group
+                label(for="regex_config_starts") Skip url starts with
+                textarea#regex_config_starts.form-control(name="regex_config_starts", cols="30", rows="5")
+            .form-group
+                label(for="regex_config_ends") Skip url ends with
+                textarea#regex_config_ends.form-control(name="regex_config_ends", cols="30", rows="5")
+            .form-group
+                label(for="regex_config_contains") Skip url contains with
+                textarea#regex_config_contains.form-control(name="regex_config_contains", cols="30", rows="5")
+            .form-group
+                label(for="regex_config_exact") Skip exact url
+                textarea#regex_config_exact.form-control(name="regex_config_exact", cols="30", rows="5")
+            .form-group
+                label(for="regex_config_accept") Accept Only
+                textarea#regex_config_accept.form-control(name="regex_config_accept", cols="30", rows="5")
 
         div.form-group
             label(for="section_config") Section Config
@@ -116,12 +111,7 @@ block content
             .form-group
                 label(for="section_config_accept") Accept Only
                 textarea#section_config_accept.form-control(name="section_config_accept", cols="30", rows="5")
-            .form-group
-                label(for="section_regex_include") Regex Include Only
-                textarea#section_regex_include.form-control(name="section_regex_include", cols="30", rows="5")
-            .form-group
-                label(for="section_regex_exclude") Regex Exclude Only
-                textarea#section_regex_exclude.form-control(name="section_regex_exclude", cols="30", rows="5")
+        
         div.form-group
             label(for="main_sections") Main Sections
             textarea#main_sections.form-control(name="main_sections", cols="30", rows="5")
@@ -135,18 +125,6 @@ block content
 block js
     script(src="/resources/string/dist/string.min.js")
     script.
-        function checkForempty(a) {
-            var r;
-            if(Array.isArray(a)) {
-                if(a.length === 1 && a[0] === "") {
-                    r =  new Array(0);
-                } else {
-                    r = a;
-                }   
-            }
-            return r;
-        }  
-
         $('#add').click(function(){
             var jsonData = {}
             var website_name = $('#website_name').val()
@@ -156,53 +134,47 @@ block js
             var region = $('#region').val() || null
             var country = $('#country').val() || null
             var needs_endslash = $('#needs_endslash').val()
-            var has_subsection = $('#has_subsection').val()
-            //- var regex_config = {
-            //-     'skip_url_starts_with' : S($('#regex_config_starts').val()).split(',').map(function(v){
-            //-     return S(v).trim().s
-            //- }) || null,
-            //-     'skip_url_ends_with' : S($('#regex_config_ends').val()).split(',').map(function(v){
-            //-     return S(v).trim().s
-            //- }) || null,
-            //-     'skip_url_contains_with' : S($('#regex_config_contains').val()).split(',').map(function(v){
-            //-     return S(v).trim().s
-            //- }) || null,
-            //-      'skip_exact_url' : S($('#section_config_exact').val()).split(',').map(function(v){
-            //-         return S(v).trim().s
-            //-     }) || null,
-            //-     'accept_only' : S($('#section_config_accept').val()).split(',').map(function(v){
-            //-         return S(v).trim().s
-            //-     }) || null
-            //- }
-            var section_config = {
-                'startsWith' : checkForempty(S($('#section_config_starts').val()).split(',')).map(function(v){
+            var scraper_setting = $('#scraper_setting').val()
+            var regex_config = {
+                'skip_url_starts_with' : S($('#regex_config_starts').val()).split(',').map(function(v){
                 return S(v).trim().s
-            }),
-                'endsWith' : checkForempty(S($('#section_config_ends').val()).split(',')).map(function(v){
+            }) || null,
+                'skip_url_ends_with' : S($('#regex_config_ends').val()).split(',').map(function(v){
                 return S(v).trim().s
-            }),
-                'containsWith' : checkForempty(S($('#section_config_contains').val()).split(',')).map(function(v){
+            }) || null,
+                'skip_url_contains_with' : S($('#regex_config_contains').val()).split(',').map(function(v){
                 return S(v).trim().s
-            }),
-                'exact' : checkForempty(S($('#section_config_exact').val()).split(',')).map(function(v){
+            }) || null,
+                 'skip_exact_url' : S($('#section_config_exact').val()).split(',').map(function(v){
                     return S(v).trim().s
-                }),
-                'accept_only' : checkForempty(S($('#section_config_accept').val()).split(',')).map(function(v){
+                }) || null,
+                'accept_only' : S($('#section_config_accept').val()).split(',').map(function(v){
                     return S(v).trim().s
-                }),
-                'regex_include' : checkForempty(S($('#section_regex_include').val()).splitLeft(',')).map(function(v){
-                    return S(v).trim().s
-                }),
-                'regex_exclude' : checkForempty(S($('#section_regex_exclude').val()).splitLeft(',')).map(function(v){
-                    return S(v).trim().s
-                })
+                }) || null
             }
-            var main_sections = checkForempty(S($('#main_sections').val()).split(',')).map(function(v){
+            var section_config = {
+                'skip_url_starts_with' : S($('#section_config_starts').val()).split(',').map(function(v){
                 return S(v).trim().s
-            })
-            var sub_sections = checkForempty(S($('#sub_sections').val()).split(',')).map(function(v){
+            }) || null,
+                'skip_url_ends_with' : S($('#section_config_ends').val()).split(',').map(function(v){
                 return S(v).trim().s
-            })
+            }) || null,
+                'skip_url_contains_with' : S($('#section_config_contains').val()).split(',').map(function(v){
+                return S(v).trim().s
+            }) || null,
+                'skip_exact_url' : S($('#section_config_exact').val()).split(',').map(function(v){
+                    return S(v).trim().s
+                }) || null,
+                'accept_only' : S($('#section_config_accept').val()).split(',').map(function(v){
+                    return S(v).trim().s
+                }) || null
+            }
+            var main_sections = S($('#main_sections').val()).split(',').map(function(v){
+                return S(v).trim().s
+            }) || null
+            var sub_sections = S($('#sub_sections').val()).split(',').map(function(v){
+                return S(v).trim().s
+            }) || null
 
 
             if(website_name.trim() && website_url.trim()){
@@ -213,8 +185,8 @@ block js
                 jsonData.region = region
                 jsonData.country = country
                 jsonData.needs_endslash = needs_endslash
-                jsonData.has_subsection = has_subsection
-                //- jsonData.regex_config = regex_config
+                jsonData.scraper_setting = scraper_setting
+                jsonData.regex_config = regex_config
                 jsonData.section_config = section_config
                 jsonData.main_sections = main_sections
                 jsonData.sub_sections = sub_sections
