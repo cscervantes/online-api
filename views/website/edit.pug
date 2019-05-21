@@ -73,60 +73,59 @@ block content
 
         legend Scraper Information (VERY IMPORTANT)
 
-        //- div.form-group
-        //-     label(for="scraper_setting") Scraper Setting
-        //-     select#scraper_setting(name="scraper_setting", class="form-control")
-        //-         option(value="REGEX_CONFIG") REGEX_CONFIG
-        //-         option(value="SECTION_CONFIG") SECTION_CONFIG
-        //-         option(value="BOTH_CONFIG") BOTH_CONFIG
-
         div.form-group
             label(for="has_subsection") Has Subsections
             select#has_subsection(name="has_subsection", class="form-control")
                 option(value="false") False
                 option(value="true") True
-        
-        //- div.form-group
-        //-     label(for="regex_config") Regex Config
-        //-     .form-group
-        //-         label(for="regex_config_starts") Skip url starts with
-        //-         textarea#regex_config_starts.form-control(name="regex_config_starts", cols="30", rows="5")=data.regex_config.startsWith
-        //-     .form-group
-        //-         label(for="regex_config_ends") Skip url ends with
-        //-         textarea#regex_config_ends.form-control(name="regex_config_ends", cols="30", rows="5")=data.regex_config.endsWith
-        //-     .form-group
-        //-         label(for="regex_config_contains") Skip url contains with
-        //-         textarea#regex_config_contains.form-control(name="regex_config_contains", cols="30", rows="5")=data.regex_config.containsWith
-        //-     .form-group
-        //-         label(for="regex_config_exact") Skip exact url
-        //-         textarea#regex_config_exact.form-control(name="regex_config_exact", cols="30", rows="5")=data.regex_config.exact
-        //-     .form-group
-        //-         label(for="regex_config_accept") Accept Only
-        //-         textarea#regex_config_accept.form-control(name="regex_config_accept", cols="30", rows="5")=data.regex_config.accept
 
         div.form-group
-            label(for="section_config") Section Config
+            label(for="section_config") Main Section Config
             .form-group
                 label(for="section_config_starts") Skip url starts with
-                textarea#section_config_starts.form-control(name="section_config_starts", cols="30", rows="5")=data.section_config.startsWith
+                textarea#section_config_starts.form-control(name="section_config_starts", cols="30", rows="5")=data.main_section_config.startsWith
             .form-group
                 label(for="section_config_ends") Skip url ends with
-                textarea#section_config_ends.form-control(name="section_config_ends", cols="30", rows="5")=data.section_config.endsWith
+                textarea#section_config_ends.form-control(name="section_config_ends", cols="30", rows="5")=data.main_section_config.endsWith
             .form-group
                 label(for="section_config_contains") Skip url contains with
-                textarea#section_config_contains.form-control(name="section_config_contains", cols="30", rows="5")=data.section_config.containsWith
+                textarea#section_config_contains.form-control(name="section_config_contains", cols="30", rows="5")=data.main_section_config.containsWith
             .form-group
                 label(for="section_config_exact") Skip exact url
-                textarea#section_config_exact.form-control(name="section_config_exact", cols="30", rows="5")=data.section_config.exact
+                textarea#section_config_exact.form-control(name="section_config_exact", cols="30", rows="5")=data.main_section_config.exact
             .form-group
                 label(for="section_config_accept") Accept Only
-                textarea#section_config_accept.form-control(name="section_config_accept", cols="30", rows="5")=data.section_config.accept_only
+                textarea#section_config_accept.form-control(name="section_config_accept", cols="30", rows="5")=data.main_section_config.accept_only
             .form-group
                 label(for="section_regex_include") Regex Include Only
-                textarea#section_regex_include.form-control(name="section_regex_include", cols="30", rows="5")=data.section_config.regex_include
+                textarea#section_regex_include.form-control(name="section_regex_include", cols="30", rows="5")=data.main_section_config.regex_include
             .form-group
                 label(for="section_regex_exclude") Regex Exclude Only
-                textarea#section_regex_exclude.form-control(name="section_regex_exclude", cols="30", rows="5")=data.section_config.regex_exclude
+                textarea#section_regex_exclude.form-control(name="section_regex_exclude", cols="30", rows="5")=data.main_section_config.regex_exclude
+
+        div.form-group
+            label(for="section_config") Sub Section Config
+            .form-group
+                label(for="section_config_starts2") Skip url starts with
+                textarea#section_config_starts2.form-control(name="section_config_starts2", cols="30", rows="5")=data.sub_section_config.startsWith
+            .form-group
+                label(for="section_config_ends2") Skip url ends with
+                textarea#section_config_ends2.form-control(name="section_config_ends2", cols="30", rows="5")=data.sub_section_config.endsWith
+            .form-group
+                label(for="section_config_contains2") Skip url contains with
+                textarea#section_config_contains2.form-control(name="section_config_contains2", cols="30", rows="5")=data.sub_section_config.containsWith
+            .form-group
+                label(for="section_config_exact2") Skip exact url
+                textarea#section_config_exact2.form-control(name="section_config_exact2", cols="30", rows="5")=data.sub_section_config.exact
+            .form-group
+                label(for="section_config_accept2") Accept Only
+                textarea#section_config_accept2.form-control(name="section_config_accept2", cols="30", rows="5")=data.sub_section_config.accept_only
+            .form-group
+                label(for="section_regex_include2") Regex Include Only
+                textarea#section_regex_include2.form-control(name="section_regex_include2", cols="30", rows="5")=data.sub_section_config.regex_include
+            .form-group
+                label(for="section_regex_exclude2") Regex Exclude Only
+                textarea#section_regex_exclude2.form-control(name="section_regex_exclude2", cols="30", rows="5")=data.sub_section_config.regex_exclude
         
         div.form-group
             label(for="main_sections") Main Sections
@@ -164,24 +163,7 @@ block js
             var needs_endslash = $('#needs_endslash').val()
             var status = $('#status').val()
             var has_subsection = $('#has_subsection').val()
-            //- var regex_config = {
-            //-     'startsWith' : checkForempty(S($('#regex_config_starts').val()).splitLeft(',')).map(function(v){
-            //-     return S(v).trim().s
-            //- }),
-            //-     'endsWith' : checkForempty(S($('#regex_config_ends').val()).splitLeft(',')).map(function(v){
-            //-     return S(v).trim().s
-            //- }),
-            //-     'containsWith' : checkForempty(S($('#regex_config_contains').val()).splitLeft(',')).map(function(v){
-            //-     return S(v).trim().s
-            //- }),
-            //-      'exact' : checkForempty(S($('#regex_config_exact').val()).splitLeft(',')).map(function(v){
-            //-         return S(v).trim().s
-            //-     }),
-            //-     'accept' : checkForempty(S($('#regex_config_accept').val()).splitLeft(',')).map(function(v){
-            //-         return S(v).trim().s
-            //-     })
-            //- }
-            var section_config = {
+            var main_section_config = {
                 'startsWith' : checkForempty(S($('#section_config_starts').val()).splitLeft(',')).map(function(v){
                 return S(v).trim().s
             }),
@@ -204,6 +186,29 @@ block js
                     return S(v).trim().s
                 })
             }
+            var sub_section_config = {
+                'startsWith' : checkForempty(S($('#section_config_starts2').val()).splitLeft(',')).map(function(v){
+                return S(v).trim().s
+            }),
+                'endsWith' : checkForempty(S($('#section_config_ends2').val()).splitLeft(',')).map(function(v){
+                return S(v).trim().s
+            }),
+                'containsWith' : checkForempty(S($('#section_config_contains2').val()).splitLeft(',')).map(function(v){
+                return S(v).trim().s
+            }),
+                 'exact' : checkForempty(S($('#section_config_exact2').val()).splitLeft(',')).map(function(v){
+                    return S(v).trim().s
+                }),
+                'accept_only' : checkForempty(S($('#section_config_accept2').val()).splitLeft(',')).map(function(v){
+                    return S(v).trim().s
+                }),
+                'regex_include' : checkForempty(S($('#section_regex_include2').val()).splitLeft(',')).map(function(v){
+                    return S(v).trim().s
+                }),
+                'regex_exclude' : checkForempty(S($('#section_regex_exclude2').val()).splitLeft(',')).map(function(v){
+                    return S(v).trim().s
+                })
+            }
             var main_sections = checkForempty(S($('#main_sections').val()).splitLeft(',')).map(function(v){
                 return S(v).trim().s
             })
@@ -222,9 +227,9 @@ block js
                 jsonData.needs_endslash = needs_endslash
                 jsonData.status = status
                 jsonData.has_subsection = has_subsection
-                //- jsonData.scraper_setting = scraper_setting
-                //- jsonData.regex_config = regex_config
-                jsonData.section_config = section_config
+                jsonData.date_updated = new Date()
+                jsonData.main_section_config = main_section_config
+                jsonData.sub_section_config = sub_section_config
                 jsonData.main_sections = main_sections
                 jsonData.sub_sections = sub_sections
                 //- console.log(jsonData)

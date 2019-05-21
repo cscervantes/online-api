@@ -22,7 +22,37 @@ var websiteSchema = new Schema({
         unique: true,
         required: true
     },
-    section_config: { // used for scraper setting
+    main_section_config: { // used for scraper setting
+        startsWith: {
+            type: Array,
+            default: []
+        },
+        endsWith: {
+            type: Array,
+            default: []
+        },
+        containsWith: {
+            type: Array,
+            default: []
+        },
+        exact: {
+            type: Array,
+            default: []
+        },
+        accept_only: {
+            type: Array,
+            default: []
+        },
+        regex_include: {
+            type: Array,
+            default: []
+        },
+        regex_exclude: {
+            type: Array,
+            default: []
+        }
+    },
+    sub_section_config: { // used for scraper setting
         startsWith: {
             type: Array,
             default: []
