@@ -82,6 +82,36 @@ var websiteSchema = new Schema({
             default: []
         }
     },
+    article_config: {
+        startsWith: {
+            type: Array,
+            default: []
+        },
+        endsWith: {
+            type: Array,
+            default: []
+        },
+        containsWith: {
+            type: Array,
+            default: []
+        },
+        exact: {
+            type: Array,
+            default: []
+        },
+        accept_only: {
+            type: Array,
+            default: []
+        },
+        regex_include: {
+            type: Array,
+            default: []
+        },
+        regex_exclude: {
+            type: Array,
+            default: []
+        }
+    },
     main_sections: {
         type: Array,
         default: null
@@ -147,5 +177,6 @@ websiteSchema
 websiteSchema.statics.storeWebsite = function(data, cb){
     return this.create(data, cb);
 }
+mongoose.set('useFindAndModify', false);
 
 module.exports = mongoose.model('websites', websiteSchema)

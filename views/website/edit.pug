@@ -25,117 +25,149 @@ block css
         }
 block content
     h1= title
+    div.row
+        fieldset.form-group.col-md
 
-    fieldset.form-group
+            legend Basic Information (IMPORTANT)
 
-        legend Basic Information (IMPORTANT)
+            div.form-group
+                label(for="website_name") Website Name 
+                input#website_name(type="text", value=data.website_name, name="website_name", required="required", class="form-control")
+            
+            div.form-group
+                label(for="website_url") Website Url
+                input#website_url(type="text", value=data.website_url, name="website_url", required="required", class="form-control")
 
-        div.form-group
-            label(for="website_name") Website Name 
-            input#website_name(type="text", value=data.website_name, name="website_name", required="required", class="form-control")
-        
-        div.form-group
-            label(for="website_url") Website Url
-            input#website_url(type="text", value=data.website_url, name="website_url", required="required", class="form-control")
+            div.form-group
+                label(for="fqdn") FQDN
+                input#fqdn(type="text", name="fqdn", value=data.fqdn, disabled="disabled", class="form-control")
+            
+            div.form-group
+                label(for="category") Category
+                select#category(name="category", class="form-control")
+                    option(value="News") News
+                    option(value="Blog") Blog
+            
+            div.form-group
+                label(for="region") Region
+                input#region(type="text", name="region", value=data.region, required="required", class="form-control")
 
-        div.form-group
-            label(for="fqdn") FQDN
-            input#fqdn(type="text", name="fqdn", value=data.fqdn, disabled="disabled", class="form-control")
-        
-        div.form-group
-            label(for="category") Category
-            select#category(name="category", class="form-control")
-                option(value="News") News
-                option(value="Blog") Blog
-        
-        div.form-group
-            label(for="region") Region
-            input#region(type="text", name="region", value=data.region, required="required", class="form-control")
+            div.form-group
+                label(for="country") Country
+                input#country(type="text", name="country", value=data.country, required="required", class="form-control")
 
-        div.form-group
-            label(for="country") Country
-            input#country(type="text", name="country", value=data.country, required="required", class="form-control")
+            div.form-group
+                label(for="needs_endslash") Needs End Slash
+                select#needs_endslash(name="needs_endslash", class="form-control")
+                    option(value="false") False
+                    option(value="true") True
+            
+            div.form-group
+                label(for="status") Status
+                select#status(name="status", class="form-control")
+                    option(value="INACTIVE") INACTIVE
+                    option(value="ACTIVE") ACTIVE
+                    option(value="EXPIRED") EXPIRED
+            
+            div.form-group
+                label(for="has_subsection") Has Subsections
+                select#has_subsection(name="has_subsection", class="form-control")
+                    option(value="false") False
+                    option(value="true") True
+            
+            div.form-group
+                label(for="main_sections") Main Sections
+                textarea#main_sections.form-control(name="main_sections", cols="30", rows="5")=data.main_sections
 
-        div.form-group
-            label(for="needs_endslash") Needs End Slash
-            select#needs_endslash(name="needs_endslash", class="form-control")
-                option(value="false") False
-                option(value="true") True
-        
-        div.form-group
-            label(for="status") Status
-            select#status(name="status", class="form-control")
-                option(value="INACTIVE") INACTIVE
-                option(value="ACTIVE") ACTIVE
-                option(value="EXPIRED") EXPIRED
+            div.form-group
+                label(for="sub_sections") Sub Sections
+                textarea#sub_sections.form-control(name="sub_sections", cols="30", rows="5")=data.sub_sections
 
-    fieldset.form-group
+        fieldset.form-group.col-md
 
-        legend Scraper Information (VERY IMPORTANT)
+            legend Main Section Information (VERY IMPORTANT)
 
-        div.form-group
-            label(for="has_subsection") Has Subsections
-            select#has_subsection(name="has_subsection", class="form-control")
-                option(value="false") False
-                option(value="true") True
+            div.form-group
+                label(for="section_config") Main Section Config
+                .form-group
+                    label(for="section_config_starts") Skip url starts with
+                    textarea#section_config_starts.form-control(name="section_config_starts", cols="30", rows="5")=data.main_section_config.startsWith
+                .form-group
+                    label(for="section_config_ends") Skip url ends with
+                    textarea#section_config_ends.form-control(name="section_config_ends", cols="30", rows="5")=data.main_section_config.endsWith
+                .form-group
+                    label(for="section_config_contains") Skip url contains with
+                    textarea#section_config_contains.form-control(name="section_config_contains", cols="30", rows="5")=data.main_section_config.containsWith
+                .form-group
+                    label(for="section_config_exact") Skip exact url
+                    textarea#section_config_exact.form-control(name="section_config_exact", cols="30", rows="5")=data.main_section_config.exact
+                .form-group
+                    label(for="section_config_accept") Accept Only
+                    textarea#section_config_accept.form-control(name="section_config_accept", cols="30", rows="5")=data.main_section_config.accept_only
+                .form-group
+                    label(for="section_regex_include") Regex Include Only
+                    textarea#section_regex_include.form-control(name="section_regex_include", cols="30", rows="5")=data.main_section_config.regex_include
+                .form-group
+                    label(for="section_regex_exclude") Regex Exclude Only
+                    textarea#section_regex_exclude.form-control(name="section_regex_exclude", cols="30", rows="5")=data.main_section_config.regex_exclude
 
-        div.form-group
-            label(for="section_config") Main Section Config
-            .form-group
-                label(for="section_config_starts") Skip url starts with
-                textarea#section_config_starts.form-control(name="section_config_starts", cols="30", rows="5")=data.main_section_config.startsWith
-            .form-group
-                label(for="section_config_ends") Skip url ends with
-                textarea#section_config_ends.form-control(name="section_config_ends", cols="30", rows="5")=data.main_section_config.endsWith
-            .form-group
-                label(for="section_config_contains") Skip url contains with
-                textarea#section_config_contains.form-control(name="section_config_contains", cols="30", rows="5")=data.main_section_config.containsWith
-            .form-group
-                label(for="section_config_exact") Skip exact url
-                textarea#section_config_exact.form-control(name="section_config_exact", cols="30", rows="5")=data.main_section_config.exact
-            .form-group
-                label(for="section_config_accept") Accept Only
-                textarea#section_config_accept.form-control(name="section_config_accept", cols="30", rows="5")=data.main_section_config.accept_only
-            .form-group
-                label(for="section_regex_include") Regex Include Only
-                textarea#section_regex_include.form-control(name="section_regex_include", cols="30", rows="5")=data.main_section_config.regex_include
-            .form-group
-                label(for="section_regex_exclude") Regex Exclude Only
-                textarea#section_regex_exclude.form-control(name="section_regex_exclude", cols="30", rows="5")=data.main_section_config.regex_exclude
+        fieldset.form-group.col-md
 
-        div.form-group
-            label(for="section_config") Sub Section Config
-            .form-group
-                label(for="section_config_starts2") Skip url starts with
-                textarea#section_config_starts2.form-control(name="section_config_starts2", cols="30", rows="5")=data.sub_section_config.startsWith
-            .form-group
-                label(for="section_config_ends2") Skip url ends with
-                textarea#section_config_ends2.form-control(name="section_config_ends2", cols="30", rows="5")=data.sub_section_config.endsWith
-            .form-group
-                label(for="section_config_contains2") Skip url contains with
-                textarea#section_config_contains2.form-control(name="section_config_contains2", cols="30", rows="5")=data.sub_section_config.containsWith
-            .form-group
-                label(for="section_config_exact2") Skip exact url
-                textarea#section_config_exact2.form-control(name="section_config_exact2", cols="30", rows="5")=data.sub_section_config.exact
-            .form-group
-                label(for="section_config_accept2") Accept Only
-                textarea#section_config_accept2.form-control(name="section_config_accept2", cols="30", rows="5")=data.sub_section_config.accept_only
-            .form-group
-                label(for="section_regex_include2") Regex Include Only
-                textarea#section_regex_include2.form-control(name="section_regex_include2", cols="30", rows="5")=data.sub_section_config.regex_include
-            .form-group
-                label(for="section_regex_exclude2") Regex Exclude Only
-                textarea#section_regex_exclude2.form-control(name="section_regex_exclude2", cols="30", rows="5")=data.sub_section_config.regex_exclude
-        
-        div.form-group
-            label(for="main_sections") Main Sections
-            textarea#main_sections.form-control(name="main_sections", cols="30", rows="5")=data.main_sections
+            legend Sub Section Information (VERY IMPORTANT)
 
-        div.form-group
-            label(for="sub_sections") Sub Sections
-            textarea#sub_sections.form-control(name="sub_sections", cols="30", rows="5")=data.sub_sections
+            div.form-group
+                label(for="section_config") Sub Section Config
+                .form-group
+                    label(for="section_config_starts2") Skip url starts with
+                    textarea#section_config_starts2.form-control(name="section_config_starts2", cols="30", rows="5")=data.sub_section_config.startsWith
+                .form-group
+                    label(for="section_config_ends2") Skip url ends with
+                    textarea#section_config_ends2.form-control(name="section_config_ends2", cols="30", rows="5")=data.sub_section_config.endsWith
+                .form-group
+                    label(for="section_config_contains2") Skip url contains with
+                    textarea#section_config_contains2.form-control(name="section_config_contains2", cols="30", rows="5")=data.sub_section_config.containsWith
+                .form-group
+                    label(for="section_config_exact2") Skip exact url
+                    textarea#section_config_exact2.form-control(name="section_config_exact2", cols="30", rows="5")=data.sub_section_config.exact
+                .form-group
+                    label(for="section_config_accept2") Accept Only
+                    textarea#section_config_accept2.form-control(name="section_config_accept2", cols="30", rows="5")=data.sub_section_config.accept_only
+                .form-group
+                    label(for="section_regex_include2") Regex Include Only
+                    textarea#section_regex_include2.form-control(name="section_regex_include2", cols="30", rows="5")=data.sub_section_config.regex_include
+                .form-group
+                    label(for="section_regex_exclude2") Regex Exclude Only
+                    textarea#section_regex_exclude2.form-control(name="section_regex_exclude2", cols="30", rows="5")=data.sub_section_config.regex_exclude
 
-    button#add(type="button" class="btn btn-medium btn-primary") Update
+        fieldset.form-group.col-md
+
+            legend Article Config Information (VERY IMPORTANT)
+
+            div.form-group
+                label(for="section_config") Sub Section Config
+                .form-group
+                    label(for="section_config_starts3") Skip url starts with
+                    textarea#section_config_starts3.form-control(name="section_config_starts3", cols="30", rows="5")=data.article_config.startsWith
+                .form-group
+                    label(for="section_config_ends3") Skip url ends with
+                    textarea#section_config_ends3.form-control(name="section_config_ends3", cols="30", rows="5")=data.article_config.endsWith
+                .form-group
+                    label(for="section_config_contains3") Skip url contains with
+                    textarea#section_config_contains3.form-control(name="section_config_contains3", cols="30", rows="5")=data.article_config.containsWith
+                .form-group
+                    label(for="section_config_exact3") Skip exact url
+                    textarea#section_config_exact3.form-control(name="section_config_exact3", cols="30", rows="5")=data.article_config.exact
+                .form-group
+                    label(for="section_config_accept3") Accept Only
+                    textarea#section_config_accept3.form-control(name="section_config_accept3", cols="30", rows="5")=data.article_config.accept_only
+                .form-group
+                    label(for="section_regex_include3") Regex Include Only
+                    textarea#section_regex_include3.form-control(name="section_regex_include3", cols="30", rows="5")=data.article_config.regex_include
+                .form-group
+                    label(for="section_regex_exclude3") Regex Exclude Only
+                    textarea#section_regex_exclude3.form-control(name="section_regex_exclude3", cols="30", rows="5")=data.article_config.regex_exclude
+
+    button#add(type="button" class="btn btn-outline-warning btn-rounded waves-effect", style="position:fixed; bottom:10px; right:10px") Update
 
 block js
     script(src="/resources/string/dist/string.min.js")
@@ -209,6 +241,29 @@ block js
                     return S(v).trim().s
                 })
             }
+            var article_config = {
+                'startsWith' : checkForempty(S($('#section_config_starts3').val()).splitLeft(',')).map(function(v){
+                return S(v).trim().s
+            }),
+                'endsWith' : checkForempty(S($('#section_config_ends3').val()).splitLeft(',')).map(function(v){
+                return S(v).trim().s
+            }),
+                'containsWith' : checkForempty(S($('#section_config_contains3').val()).splitLeft(',')).map(function(v){
+                return S(v).trim().s
+            }),
+                 'exact' : checkForempty(S($('#section_config_exact3').val()).splitLeft(',')).map(function(v){
+                    return S(v).trim().s
+                }),
+                'accept_only' : checkForempty(S($('#section_config_accept3').val()).splitLeft(',')).map(function(v){
+                    return S(v).trim().s
+                }),
+                'regex_include' : checkForempty(S($('#section_regex_include3').val()).splitLeft(',')).map(function(v){
+                    return S(v).trim().s
+                }),
+                'regex_exclude' : checkForempty(S($('#section_regex_exclude3').val()).splitLeft(',')).map(function(v){
+                    return S(v).trim().s
+                })
+            }
             var main_sections = checkForempty(S($('#main_sections').val()).splitLeft(',')).map(function(v){
                 return S(v).trim().s
             })
@@ -232,6 +287,7 @@ block js
                 jsonData.sub_section_config = sub_section_config
                 jsonData.main_sections = main_sections
                 jsonData.sub_sections = sub_sections
+                jsonData.article_config = article_config
                 //- console.log(jsonData)
                 $.ajax({
                     dataType : "json",
