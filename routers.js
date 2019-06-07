@@ -16,7 +16,7 @@ module.exports = function (app) {
 
     map('admin');
     map('websites');
-    // map('authors');
+    map('articles');
     // map('websites');
     // map('domains');
     // map('stash-articles', 'stashArticles');
