@@ -162,6 +162,99 @@ var websiteSchema = new Schema({
     date_updated: {
         type: Date,
         default: Date.now()
+    },
+    selectors:{
+        title: [
+            {
+                selector: String,
+                attrib: String,
+                ignore: Array,
+                replace: [
+                    {
+                        find: String,
+                        replace: String
+                    }
+                ]
+            }
+        ],
+        date_publish: [
+            {
+                selector: String,
+                attrib: String,
+                ignore: Array,
+                replace: [
+                    {
+                        find: String,
+                        replace: String
+                    }
+                ]
+            }
+        ],
+        author: [
+            {
+                selector: String,
+                attrib: String,
+                ignore: Array,
+                replace: [
+                    {
+                        find: String,
+                        replace: String
+                    }
+                ]
+            }
+        ],
+        section: [
+            {
+                selector: String,
+                attrib: String,
+                ignore: Array,
+                replace: [
+                    {
+                        find: String,
+                        replace: String
+                    }
+                ]
+            }
+        ],
+        image: [
+            {
+                selector: String,
+                attrib: String,
+                ignore: Array,
+                replace: [
+                    {
+                        find: String,
+                        replace: String
+                    }
+                ]
+            }
+        ],
+        video: [
+            {
+                selector: String,
+                attrib: String,
+                ignore: Array,
+                replace: [
+                    {
+                        find: String,
+                        replace: String
+                    }
+                ]
+            }
+        ],
+        content: [
+            {
+                selector: String,
+                attrib: String,
+                ignore: Array,
+                replace: [
+                    {
+                        find: String,
+                        replace: String
+                    }
+                ]
+            }
+        ]
     }
 });
 websiteSchema

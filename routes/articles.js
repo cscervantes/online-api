@@ -3,7 +3,7 @@ var router = express.Router();
 var model = require('../models')
 
 router.get('/', function(req, res){
-    model.articles.find({}).exec(function(err, results){
+    model.articles.find({}).limit(parseInt(req.query.limit) || 10).exec(function(err, results){
         if(err){
             res.json(err)
         }else{
