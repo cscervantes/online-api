@@ -1,0 +1,46 @@
+extends ../layout
+block css
+
+
+block content
+    h1= title
+    .row
+        .col-md-12
+        
+            form(action="/article", method="POST")
+                .form-group
+                    label(for="url") Search Keyword of Url
+                    input#article_full_url.form-control(type="text", name="article_full_url", required="required")
+                .form-group
+                    label(for="sort_by") Sort By
+                    select#sort_by.form-control(name="sort_by")
+                        option(value="article_full_url") Article Url
+                        option(value="article_status") Status
+                        option(value="article_date_created_sys_time") Created System Time
+                .form-group
+                    label(for="sort_direction") Sort Direction
+                    select#sort_direction.form-control(name="sort_direction")
+                        option(value="-1") DESC
+                        option(value="1") ASC
+                .form-group
+                    input(type="submit", class="btn btn-outline-primary btn-rounded waves-effect", value="Search")
+    .row
+        .col-md-12
+            table.table.table-bordered
+                thead
+                    tr
+                        th #
+                        th Article Url
+                        th Article Status
+                        th System Created
+                tbody
+                    - var ct = 0
+                    each d in data
+                        - ct ++
+                        tr
+                            td=ct
+                            td
+                                a(href=d.article_full_url, target="_blank") #{d.article_full_url}
+                            td=d.article_status
+                            td=d.article_date_created_sys_time
+block js

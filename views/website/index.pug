@@ -3,6 +3,25 @@ extends ../layout
 block content
   h1= title
   p List of Websites
+  .row
+        .col-md-12
+        
+            form(action="/", method="POST")
+                .form-group
+                    label(for="website_name") Search Keyword of Website Name
+                    input#website_name.form-control(type="text", name="website_name", required="required")
+                .form-group
+                    label(for="sort_by") Sort By
+                    select#sort_by.form-control(name="sort_by")
+                        option(value="website_name") Website Name
+                        option(value="date_created") Date Created
+                .form-group
+                    label(for="sort_direction") Sort Direction
+                    select#sort_direction.form-control(name="sort_direction")
+                        option(value="-1") DESC
+                        option(value="1") ASC
+                .form-group
+                    input(type="submit", class="btn btn-outline-primary btn-rounded waves-effect", value="Search")
   table.table.table-bordered
     thead
       tr
@@ -12,6 +31,7 @@ block content
       each d in data
        tr
         td=d.website_name
+        td=d.date_created
         td
           a(href="/admin/edit/"+d._id) Edit
         
