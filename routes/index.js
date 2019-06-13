@@ -36,6 +36,7 @@ router.all('/', function(req, res, next) {
 });
 
 router.all('/article', function(req, res, next) {
+  console.log(req.query)
   if(req.method === 'POST'){
     var sort = {}
     var filter = { 
@@ -47,7 +48,20 @@ router.all('/article', function(req, res, next) {
     var limit = req.body.limit
     sort[req.body.sort_by] = parseInt(req.body.sort_direction)
   }else{
-    var filter = (req.query.filter) ? JSON.parse(req.query.filter) : {}
+    // var filter = (req.query.filter) ? JSON.parse(req.query.filter) : {}
+    var filter = req.query.filter
+    if(filter){
+      filter = JSON.parse(req.query.filter)
+      filter = { 
+        article_full_url: { 
+          $regex: eval(`/${filter.article_full_url}/`),
+          $options: "i"
+          }
+        }
+    }else{
+      var filter = {}
+    }
+    console.log(filter)
     var limit = req.query.limit 
     var sort = (req.query.sort) ? JSON.parse(req.query.sort) : {article_date_created_sys_time: -1}
   }
