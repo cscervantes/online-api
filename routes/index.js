@@ -17,14 +17,14 @@ router.all('/', function(req, res, next) {
         $options: "i"
         }
       }
-    var limit = req.body.limit
+    var limit = parseInt(req.body.limit) || 10
     sort[req.body.sort_by] = parseInt(req.body.sort_direction)
   }else{
     var filter = (req.query.filter) ? JSON.parse(req.query.filter) : {}
-    var limit = req.query.limit 
-    var sort = (req.query.sort) ? JSON.parse(req.query.sort) : {}
+    var limit = parseInt(req.query.limit) || 10
+    var sort = (req.query.sort) ? JSON.parse(req.query.sort) : {date_created: -1}
   }
-  models.websites.find(filter).limit(parseInt(limit) || 10).sort(sort).exec(function(err, result){
+  models.websites.find(filter).limit(limit).sort(sort).exec(function(err, result){
     if(err){
       next(err)
     }else{
@@ -49,7 +49,7 @@ router.all('/article', function(req, res, next) {
   }else{
     var filter = (req.query.filter) ? JSON.parse(req.query.filter) : {}
     var limit = req.query.limit 
-    var sort = (req.query.sort) ? JSON.parse(req.query.sort) : {}
+    var sort = (req.query.sort) ? JSON.parse(req.query.sort) : {article_date_created_sys_time: -1}
   }
   models.articles.find(filter).limit(parseInt(limit) || 10).sort(sort).exec(function(err, result){
     if(err){
