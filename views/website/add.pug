@@ -64,22 +64,23 @@ block content
                     option(value="false") False
                     option(value="true") True
 
-        fieldset.form-group.col-md
-
-            legend Scraper Information (VERY IMPORTANT)
-
-            //- div.form-group
-            //-     label(for="scraper_setting") Scraper Setting
-            //-     select#scraper_setting(name="scraper_setting", class="form-control")
-            //-         option(value="REGEX_CONFIG") REGEX_CONFIG
-            //-         option(value="SECTION_CONFIG") SECTION_CONFIG
-            //-         option(value="BOTH_CONFIG") BOTH_CONFIG
-
             div.form-group
                 label(for="has_subsection") Has Subsection
                 select#has_subsection(name="has_subsection", class="form-control")
                     option(value="false") False
                     option(value="true") True
+            
+            div.form-group
+                label(for="main_sections") Main Sections
+                textarea#main_sections.form-control(name="main_sections", cols="30", rows="5")
+
+            div.form-group
+                label(for="sub_sections") Sub Sections
+                textarea#sub_sections.form-control(name="sub_sections", cols="30", rows="5")
+
+        fieldset.form-group.col-md
+
+            legend Main Section Information (VERY IMPORTANT)
 
             div.form-group
                 label(for="section_config") Main Section Config
@@ -105,6 +106,10 @@ block content
                     label(for="section_regex_exclude") Regex Exclude Only
                     textarea#section_regex_exclude.form-control(name="section_regex_exclude", cols="30", rows="5")
             
+        fieldset.form-group.col-md
+            
+            legend Sub Section Information (VERY IMPORTANT)
+
             div.form-group
                 label(for="section_config") Sub Section Config
                 .form-group
@@ -128,14 +133,6 @@ block content
                 .form-group
                     label(for="section_regex_exclude2") Regex Exclude Only
                     textarea#section_regex_exclude2.form-control(name="section_regex_exclude2", cols="30", rows="5")
-            
-            div.form-group
-                label(for="main_sections") Main Sections
-                textarea#main_sections.form-control(name="main_sections", cols="30", rows="5")
-
-            div.form-group
-                label(for="sub_sections") Sub Sections
-                textarea#sub_sections.form-control(name="sub_sections", cols="30", rows="5")
 
     button#add(type="button" class="btn btn-outline-primary btn-rounded waves-effect", style="position:fixed; bottom:10px; right:10px") Add
     

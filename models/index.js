@@ -1,4 +1,5 @@
 module.exports = {
     websites: require('./Website'),
-    articles: require('./Article')
+    articles: require('./Article'),
+    filters:  require('./Filter')
 }

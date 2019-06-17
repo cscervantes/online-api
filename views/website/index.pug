@@ -15,6 +15,7 @@ block content
                     select#sort_by.form-control(name="sort_by")
                         option(value="website_name") Website Name
                         option(value="date_created") Date Created
+                        option(value="status") Status
                 .form-group
                     label(for="sort_direction") Sort Direction
                     select#sort_direction.form-control(name="sort_direction")
@@ -27,12 +28,14 @@ block content
       tr
         th WEBSITE ID
         th WEBSITE NAME
+        th Status
         th Action
     tbody
       each d in data
        tr
         td=d.website_name
         td=d.date_created
+        td=d.status
         td
           a(href="/admin/edit/"+d._id) Edit
         

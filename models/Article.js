@@ -138,6 +138,10 @@ var articleSchema = new Schema({
         type: String,
         enum: ['QUEUED', 'ERROR', 'INVALID', 'DONE'],
         default: 'QUEUED'
+    },
+    article_worker: {
+        type: Number,
+        default: 0
     }
 });
 
@@ -150,6 +154,7 @@ articleSchema
     .index({ article_section: 1 })
     .index({ article_date_created_sys_time: -1})
     .index({ article_src_med_type: 1})
+    .index({ article_worker: 1})
 
 articleSchema.statics.storeArticle= function(data, cb){
     return this.create(data, cb);

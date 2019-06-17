@@ -3,7 +3,7 @@ var router = express.Router();
 var models = require('../models')
 
 router.use(function timeLog (req, res, next) {
-  console.log('Time: ', new Date())
+  console.log('Home Route Time: ', new Date())
   next()
 })
 
@@ -48,7 +48,6 @@ router.all('/article', function(req, res, next) {
     var limit = req.body.limit
     sort[req.body.sort_by] = parseInt(req.body.sort_direction)
   }else{
-    // var filter = (req.query.filter) ? JSON.parse(req.query.filter) : {}
     var filter = req.query.filter
     if(filter){
       filter = JSON.parse(req.query.filter)
@@ -61,15 +60,13 @@ router.all('/article', function(req, res, next) {
     }else{
       var filter = {}
     }
-    console.log(filter)
-    var limit = req.query.limit 
+    var limit = parseInt(req.query.limit) || 10
     var sort = (req.query.sort) ? JSON.parse(req.query.sort) : {article_date_created_sys_time: -1}
   }
-  models.articles.find(filter).limit(parseInt(limit) || 10).sort(sort).exec(function(err, result){
+  models.articles.find(filter).limit(limit).sort(sort).exec(function(err, result){
     if(err){
       next(err)
     }else{
-      // console.log(result)
       res.render('article/index', { title: 'Articles', data: result });
     }
   })
