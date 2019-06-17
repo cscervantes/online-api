@@ -29,14 +29,13 @@ router.all('/', function(req, res, next) {
       next(err)
     }else{
       // console.log(result)
-      res.render('website/index', { title: 'Express', data: result });
+      res.render('website/index', { title: 'Express', data: result, path: req.url });
     }
   })
   
 });
 
 router.all('/article', function(req, res, next) {
-  console.log(req.query)
   if(req.method === 'POST'){
     var sort = {}
     var filter = { 
@@ -67,10 +66,20 @@ router.all('/article', function(req, res, next) {
     if(err){
       next(err)
     }else{
-      res.render('article/index', { title: 'Articles', data: result });
+      res.render('article/index', { title: 'Articles', data: result, path: req.url });
     }
   })
   
 });
+
+router.all('/filter', function(req, res, next){
+  models.filters.find({}).limit(10).exec(function(err, result){
+    if(err){
+      next(err)
+    }else{
+      res.render('filter/index', { title: 'Filters', data: result, path: req.url });
+    }
+  })
+})
 
 module.exports = router;

@@ -13,4 +13,12 @@ router.get('/', function(req, res, next){
         else res.json(result);
     })
 })
+
+router.post('/store', function(req, res, next){
+
+})
+
+router.get('/add', function(req, res, next){
+    res.render('filter/add', {title:'Add new Filters'})
+})
 module.exports = router;

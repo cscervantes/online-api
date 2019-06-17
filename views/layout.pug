@@ -5,14 +5,15 @@ html
     link(rel='stylesheet', href='/resources/bootstrap/dist/css/bootstrap.min.css')
     block css
   body
-
-    ul.nav
+    ul.nav.nav-tabs
       li.nav-item
-        a.nav-link.active(href='/') Home
+        a(href='/', class=(path=== '/' ? 'nav-link active' : 'nav-link')) Home
       li.nav-item
-        a.nav-link(href="/admin/add") Add Website
+        a(href="/admin/add", class=(path=== '/add' ? 'nav-link active' : 'nav-link')) Add Website
       li.nav-item
-        a.nav-link(href="/article") Articles
+        a(href="/article", class=(path=== '/article' ? 'nav-link active' : 'nav-link')) Articles
+      li.nav-item
+        a(href="/filter", class=(path=== '/filter' ? 'nav-link active' : 'nav-link')) Filter
     
     .container
       block content

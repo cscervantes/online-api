@@ -1,0 +1,144 @@
+extends ../layout
+block css
+    style.
+        fieldset 
+        {
+            border: 1px solid #ddd !important;
+            margin: 0;
+            xmin-width: 0;
+            padding: 10px;       
+            position: relative;
+            border-radius:4px;
+            background-color:#f5f5f5;
+            padding-left:10px!important;
+        }
+        legend
+        {
+            font-size:14px;
+            font-weight:bold;
+            margin-bottom: 0px; 
+            width: 35%; 
+            border: 1px solid #ddd;
+            border-radius: 4px; 
+            padding: 5px 5px 5px 10px; 
+            background-color: #ffffff;
+        }
+        textarea{
+            resize:none;
+        }
+block content
+  h1= title
+  .row
+    fieldset.form-group.col-md
+        legend Filtering for Main Section
+        .form-group
+            label(for="skip_url_starts") Skip url Starts With
+            textarea#skip_url_starts.form-control(name="skip_url_starts", cols="30", rows="5")
+        .form-group
+            label(for="skip_url_ends") Skip url Ends With
+            textarea#skip_url_ends.form-control(name="skip_url_ends", cols="30", rows="5")
+        .form-group
+            label(for="skip_url_contains") Skip url Contains With
+            textarea#skip_url_contains.form-control(name="skip_url_contains", cols="30", rows="5")
+        .form-group
+            label(for="skip_exact_url") Exact
+            textarea#skip_exact_url.form-control(name="skip_exact_url", cols="30", rows="5")
+        .form-group
+            label(for="accept_only") Accept Only
+            textarea#accept_only.form-control(name="accept_only", cols="30", rows="5")
+        .form-group
+            label(for="regex_include_only") Regex Include
+            textarea#regex_include_only.form-control(name="regex_include_only", cols="30", rows="5")
+        .form-group
+            label(for="regex_exclude_only") Regex Exclude
+            textarea#regex_exclude_only.form-control(name="regex_exclude_only", cols="30", rows="5")
+    fieldset.form-group.col-md
+        legend Filtering for Sub Section
+        .form-group
+            label(for="skip_url_starts") Skip url Starts With
+            textarea#skip_url_starts.form-control(name="skip_url_starts", cols="30", rows="5")
+        .form-group
+            label(for="skip_url_ends") Skip url Ends With
+            textarea#skip_url_ends.form-control(name="skip_url_ends", cols="30", rows="5")
+        .form-group
+            label(for="skip_url_contains") Skip url Contains With
+            textarea#skip_url_contains.form-control(name="skip_url_contains", cols="30", rows="5")
+        .form-group
+            label(for="skip_exact_url") Exact
+            textarea#skip_exact_url.form-control(name="skip_exact_url", cols="30", rows="5")
+        .form-group
+            label(for="accept_only") Accept Only
+            textarea#accept_only.form-control(name="accept_only", cols="30", rows="5")
+        .form-group
+            label(for="regex_include_only") Regex Include
+            textarea#regex_include_only.form-control(name="regex_include_only", cols="30", rows="5")
+        .form-group
+            label(for="regex_exclude_only") Regex Exclude
+            textarea#regex_exclude_only.form-control(name="regex_exclude_only", cols="30", rows="5")
+    fieldset.form-group.col-md
+        legend Filtering for Article Links
+        .form-group
+            label(for="skip_url_starts") Skip url Starts With
+            textarea#skip_url_starts.form-control(name="skip_url_starts", cols="30", rows="5")
+        .form-group
+            label(for="skip_url_ends") Skip url Ends With
+            textarea#skip_url_ends.form-control(name="skip_url_ends", cols="30", rows="5")
+        .form-group
+            label(for="skip_url_contains") Skip url Contains With
+            textarea#skip_url_contains.form-control(name="skip_url_contains", cols="30", rows="5")
+        .form-group
+            label(for="skip_exact_url") Exact
+            textarea#skip_exact_url.form-control(name="skip_exact_url", cols="30", rows="5")
+        .form-group
+            label(for="accept_only") Accept Only
+            textarea#accept_only.form-control(name="accept_only", cols="30", rows="5")
+        .form-group
+            label(for="regex_include_only") Regex Include
+            textarea#regex_include_only.form-control(name="regex_include_only", cols="30", rows="5")
+        .form-group
+            label(for="regex_exclude_only") Regex Exclude
+            textarea#regex_exclude_only.form-control(name="regex_exclude_only", cols="30", rows="5")
+    button#add(type="button" class="btn btn-outline-info btn-rounded waves-effect", style="position:fixed; bottom:10px; right:10px") Add
+block js
+    script.
+        function getValues(data){
+            return data
+        }
+        $('button').click(function(){
+            var main_section_urls = {
+                skip_url_starts: $('textarea#skip_url_starts').eq(0).val(),
+                skip_url_ends:$('textarea#skip_url_ends').eq(0).val(),
+                skip_url_contains: $('textarea#skip_url_contains').eq(0).val(),
+                skip_exact_url: $('textarea#skip_exact_url').eq(0).val(),
+                accept_only: $('textarea#accept_only').eq(0).val(),
+                regex_include_only: $('textarea#regex_include_only').eq(0).val(),
+                regex_exclude_only: $('textarea#regex_exclude_only').eq(0).val()
+            }
+
+            var sub_section_urls = {
+                skip_url_starts: $('textarea#skip_url_starts').eq(1).val(),
+                skip_url_ends:$('textarea#skip_url_ends').eq(1).val(),
+                skip_url_contains: $('textarea#skip_url_contains').eq(1).val(),
+                skip_exact_url: $('textarea#skip_exact_url').eq(1).val(),
+                accept_only: $('textarea#accept_only').eq(1).val(),
+                regex_include_only: $('textarea#regex_include_only').eq(1).val(),
+                regex_exclude_only: $('textarea#regex_exclude_only').eq(1).val()
+            }
+
+            var article_urls = {
+                skip_url_starts: $('textarea#skip_url_starts').eq(2).val(),
+                skip_url_ends:$('textarea#skip_url_ends').eq(2).val(),
+                skip_url_contains: $('textarea#skip_url_contains').eq(2).val(),
+                skip_exact_url: $('textarea#skip_exact_url').eq(2).val(),
+                accept_only: $('textarea#accept_only').eq(2).val(),
+                regex_include_only: $('textarea#regex_include_only').eq(2).val(),
+                regex_exclude_only: $('textarea#regex_exclude_only').eq(2).val()
+            }
+
+            console.log(main_section_urls)
+            console.log(sub_section_urls)
+            console.log(article_urls)
+        })
+        
+        
+        
