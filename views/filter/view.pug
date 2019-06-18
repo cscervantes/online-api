@@ -1,0 +1,138 @@
+extends ../layout
+
+block content
+  h1 Viewing Filter #{title}
+  .row
+    .col-md
+        ul
+            li=data._id
+
+            li main_section_url_filter
+                ul
+                    li Skip Url Starts
+                        ul
+                            each v in data.main_section_url_filter.skip_url_starts
+                                li=v
+                ul
+                    li Skip Url Ends
+                        ul
+                            each v in data.main_section_url_filter.skip_url_ends
+                                li=v
+
+                ul
+                    li Skip Url Contains
+                        ul
+                            each v in data.main_section_url_filter.skip_url_contains
+                                li=v
+
+                ul
+                    li Skip Exact Url
+                        ul
+                            each v in data.main_section_url_filter.skip_exact_url
+                                li=v
+
+                ul
+                    li Accept Only
+                        ul
+                            each v in data.main_section_url_filter.accept_only
+                                li=v
+
+                ul
+                    li Regex Include Only
+                        ul
+                            each v in data.main_section_url_filter.regex_include_only
+                                li=v
+                
+                ul
+                    li Regex Exclude Only
+                        ul
+                            each v in data.main_section_url_filter.regex_exclude_only
+                                li=v
+
+
+
+            li sub_section_url_filter
+                ul
+                    li Skip Url Starts
+                        ul
+                            each v in data.sub_section_url_filter.skip_url_starts
+                                li=v
+
+                ul
+                    li Skip Url Ends
+                        ul
+                            each v in data.sub_section_url_filter.skip_url_ends
+                                li=v
+
+                ul
+                    li Skip Url Contains
+                        ul
+                            each v in data.sub_section_url_filter.skip_url_contains
+                                li=v
+
+                ul
+                    li Skip Exact Url
+                        ul
+                            each v in data.sub_section_url_filter.skip_exact_url
+                                li=v
+
+                ul
+                    li Accept Only
+                        ul
+                            each v in data.sub_section_url_filter.accept_only
+                                li=v
+
+                ul
+                    li Regex Include Only
+                        ul
+                            each v in data.sub_section_url_filter.regex_include_only
+                                li=v
+                
+                ul
+                    li Regex Exclude Only
+                        ul
+                            each v in data.sub_section_url_filter.regex_exclude_only
+                                li=v
+
+            li article_url_filter
+                ul
+                    li Skip Url Starts
+                        ul
+                            each v in data.article_url_filter.skip_url_starts
+                                li=v
+
+                ul
+                    li Skip Url Ends
+                        ul
+                            each v in data.article_url_filter.skip_url_ends
+                                li=v
+
+                ul
+                    li Skip Url Contains
+                        ul
+                            each v in data.article_url_filter.skip_url_contains
+                                li=v
+
+                ul
+                    li Skip Exact Url
+                        ul
+                            each v in data.article_url_filter.skip_exact_url
+                                li=v
+
+                ul
+                    li Accept Only
+                        ul
+                            each v in data.article_url_filter.accept_only
+                                li=v
+
+                ul
+                    li Regex Include Only
+                        ul
+                            each v in data.article_url_filter.regex_include_only
+                                li=v
+                
+                ul
+                    li Regex Exclude Only
+                        ul
+                            each v in data.article_url_filter.regex_exclude_only
+                                li=v

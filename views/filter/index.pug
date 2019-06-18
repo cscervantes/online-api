@@ -6,3 +6,22 @@ block content
   .row
         .col-md-12
         a.nav-link(href='/filters/add') Add New Filters
+        table.table.table-bordered
+          thead
+            tr
+              th #
+              th Date Created
+              th Date Updated
+              th Edit
+          tbody
+            each v in data
+              tr
+                td=v._id
+                td=v.timestamp.created
+                td=v.timestamp.updated
+                td
+                  a(href='/filters/edit/'+v._id) Edit
+                    |
+                  a(href='/filters/view/'+v._id) View
+                    |
+                  a(href='/filters/delete/'+v._id) Delete
