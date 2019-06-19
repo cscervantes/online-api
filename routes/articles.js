@@ -28,27 +28,12 @@ router.post('/bulkStore', function(req, res){
     })
 })
 
-// router.post('/update/:id', function(req, res){
-//     model.websites.findByIdAndUpdate(req.params.id, req.body, function(err, result){
-//         if(err) res.json(err);
-//         else res.json(result)
-//     })
-// })
-
 router.get('/queued_articles', function(req, res){
-    model.articles.find({article_status: 'QUEUED'}).limit(parseInt(req.query.limit) || 10).exec(function(err, result){
+    model.articles.find({article_status: 'QUEUED'}).populate({path:'publication', select:'selectors'}).limit(parseInt(req.query.limit) || 10).exec(function(err, result){
         if(err) res.json(err);
         else res.json(result)
     })
 })
-
-// router.get('/get_active_websites_with_subsection', function(req, res){
-//     model.websites.find({status: 'ACTIVE', has_subsection: true}).exec(function(err, result){
-//         if(err) res.json(err);
-//         else res.json(result)
-//     })
-// })
-
 
 router.put('/update/:id', function(req, res){
     model.articles.findByIdAndUpdate(req.params.id, req.body, {upsert: true}).exec(function(err, result){
@@ -58,11 +43,17 @@ router.put('/update/:id', function(req, res){
 })
 
 router.get('/:id', function(req, res){
-    model.articles.findById({_id: req.params.id}).exec(function(err, result){
+    model.articles.findById({_id: req.params.id}).populate('publication').exec(function(err, result){
         if(err) res.json(err);
         else res.json(result);
     })
 })
 
+router.get('/list_of_queued', function(req, res){
+    // model.articles.find({_id: req.params.id})..exec(function(err, result){
+    //     if(err) res.json(err);
+    //     else res.json(result);
+    // })
+})
 
 module.exports = router

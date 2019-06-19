@@ -77,11 +77,11 @@ block content
             
             div.form-group
                 label(for="main_sections") Main Sections
-                textarea#main_sections.form-control(name="main_sections", cols="30", rows="5")=data.main_sections
+                textarea#main_sections.form-control(name="main_sections", cols="30", rows="5")=data.main_sections.join('\n')
 
             div.form-group
                 label(for="sub_sections") Sub Sections
-                textarea#sub_sections.form-control(name="sub_sections", cols="30", rows="5")=data.sub_sections
+                textarea#sub_sections.form-control(name="sub_sections", cols="30", rows="5")=data.sub_sections.join('\n')
 
         fieldset.form-group.col-md
 
@@ -91,25 +91,25 @@ block content
                 label(for="section_config") Main Section Config
                 .form-group
                     label(for="section_config_starts") Skip url starts with
-                    textarea#section_config_starts.form-control(name="section_config_starts", cols="30", rows="5")=data.main_section_config.startsWith
+                    textarea#section_config_starts.form-control(name="section_config_starts", cols="30", rows="5")=data.main_section_config.startsWith.join('\n')
                 .form-group
                     label(for="section_config_ends") Skip url ends with
-                    textarea#section_config_ends.form-control(name="section_config_ends", cols="30", rows="5")=data.main_section_config.endsWith
+                    textarea#section_config_ends.form-control(name="section_config_ends", cols="30", rows="5")=data.main_section_config.endsWith.join('\n')
                 .form-group
                     label(for="section_config_contains") Skip url contains with
-                    textarea#section_config_contains.form-control(name="section_config_contains", cols="30", rows="5")=data.main_section_config.containsWith
+                    textarea#section_config_contains.form-control(name="section_config_contains", cols="30", rows="5")=data.main_section_config.containsWith.join('\n')
                 .form-group
                     label(for="section_config_exact") Skip exact url
-                    textarea#section_config_exact.form-control(name="section_config_exact", cols="30", rows="5")=data.main_section_config.exact
+                    textarea#section_config_exact.form-control(name="section_config_exact", cols="30", rows="5")=data.main_section_config.exact.join('\n')
                 .form-group
                     label(for="section_config_accept") Accept Only
-                    textarea#section_config_accept.form-control(name="section_config_accept", cols="30", rows="5")=data.main_section_config.accept_only
+                    textarea#section_config_accept.form-control(name="section_config_accept", cols="30", rows="5")=data.main_section_config.accept_only.join('\n')
                 .form-group
                     label(for="section_regex_include") Regex Include Only
-                    textarea#section_regex_include.form-control(name="section_regex_include", cols="30", rows="5")=data.main_section_config.regex_include
+                    textarea#section_regex_include.form-control(name="section_regex_include", cols="30", rows="5")=data.main_section_config.regex_include.join('\n')
                 .form-group
                     label(for="section_regex_exclude") Regex Exclude Only
-                    textarea#section_regex_exclude.form-control(name="section_regex_exclude", cols="30", rows="5")=data.main_section_config.regex_exclude
+                    textarea#section_regex_exclude.form-control(name="section_regex_exclude", cols="30", rows="5")=data.main_section_config.regex_exclude.join('\n')
 
         fieldset.form-group.col-md
 
@@ -119,25 +119,25 @@ block content
                 label(for="section_config") Sub Section Config
                 .form-group
                     label(for="section_config_starts2") Skip url starts with
-                    textarea#section_config_starts2.form-control(name="section_config_starts2", cols="30", rows="5")=data.sub_section_config.startsWith
+                    textarea#section_config_starts2.form-control(name="section_config_starts2", cols="30", rows="5")=data.sub_section_config.startsWith.join('\n')
                 .form-group
                     label(for="section_config_ends2") Skip url ends with
-                    textarea#section_config_ends2.form-control(name="section_config_ends2", cols="30", rows="5")=data.sub_section_config.endsWith
+                    textarea#section_config_ends2.form-control(name="section_config_ends2", cols="30", rows="5")=data.sub_section_config.endsWith.join('\n')
                 .form-group
                     label(for="section_config_contains2") Skip url contains with
-                    textarea#section_config_contains2.form-control(name="section_config_contains2", cols="30", rows="5")=data.sub_section_config.containsWith
+                    textarea#section_config_contains2.form-control(name="section_config_contains2", cols="30", rows="5")=data.sub_section_config.containsWith.join('\n')
                 .form-group
                     label(for="section_config_exact2") Skip exact url
-                    textarea#section_config_exact2.form-control(name="section_config_exact2", cols="30", rows="5")=data.sub_section_config.exact
+                    textarea#section_config_exact2.form-control(name="section_config_exact2", cols="30", rows="5")=data.sub_section_config.exact.join('\n')
                 .form-group
                     label(for="section_config_accept2") Accept Only
-                    textarea#section_config_accept2.form-control(name="section_config_accept2", cols="30", rows="5")=data.sub_section_config.accept_only
+                    textarea#section_config_accept2.form-control(name="section_config_accept2", cols="30", rows="5")=data.sub_section_config.accept_only.join('\n')
                 .form-group
                     label(for="section_regex_include2") Regex Include Only
-                    textarea#section_regex_include2.form-control(name="section_regex_include2", cols="30", rows="5")=data.sub_section_config.regex_include
+                    textarea#section_regex_include2.form-control(name="section_regex_include2", cols="30", rows="5")=data.sub_section_config.regex_include.join('\n')
                 .form-group
                     label(for="section_regex_exclude2") Regex Exclude Only
-                    textarea#section_regex_exclude2.form-control(name="section_regex_exclude2", cols="30", rows="5")=data.sub_section_config.regex_exclude
+                    textarea#section_regex_exclude2.form-control(name="section_regex_exclude2", cols="30", rows="5")=data.sub_section_config.regex_exclude.join('\n')
 
         fieldset.form-group.col-md
 
@@ -147,25 +147,25 @@ block content
                 label(for="section_config") Sub Section Config
                 .form-group
                     label(for="section_config_starts3") Skip url starts with
-                    textarea#section_config_starts3.form-control(name="section_config_starts3", cols="30", rows="5")=data.article_config.startsWith
+                    textarea#section_config_starts3.form-control(name="section_config_starts3", cols="30", rows="5")=data.article_config.startsWith.join('\n')
                 .form-group
                     label(for="section_config_ends3") Skip url ends with
-                    textarea#section_config_ends3.form-control(name="section_config_ends3", cols="30", rows="5")=data.article_config.endsWith
+                    textarea#section_config_ends3.form-control(name="section_config_ends3", cols="30", rows="5")=data.article_config.endsWith.join('\n')
                 .form-group
                     label(for="section_config_contains3") Skip url contains with
-                    textarea#section_config_contains3.form-control(name="section_config_contains3", cols="30", rows="5")=data.article_config.containsWith
+                    textarea#section_config_contains3.form-control(name="section_config_contains3", cols="30", rows="5")=data.article_config.containsWith.join('\n')
                 .form-group
                     label(for="section_config_exact3") Skip exact url
-                    textarea#section_config_exact3.form-control(name="section_config_exact3", cols="30", rows="5")=data.article_config.exact
+                    textarea#section_config_exact3.form-control(name="section_config_exact3", cols="30", rows="5")=data.article_config.exact.join('\n')
                 .form-group
                     label(for="section_config_accept3") Accept Only
-                    textarea#section_config_accept3.form-control(name="section_config_accept3", cols="30", rows="5")=data.article_config.accept_only
+                    textarea#section_config_accept3.form-control(name="section_config_accept3", cols="30", rows="5")=data.article_config.accept_only.join('\n')
                 .form-group
                     label(for="section_regex_include3") Regex Include Only
-                    textarea#section_regex_include3.form-control(name="section_regex_include3", cols="30", rows="5")=data.article_config.regex_include
+                    textarea#section_regex_include3.form-control(name="section_regex_include3", cols="30", rows="5")=data.article_config.regex_include.join('\n')
                 .form-group
                     label(for="section_regex_exclude3") Regex Exclude Only
-                    textarea#section_regex_exclude3.form-control(name="section_regex_exclude3", cols="30", rows="5")=data.article_config.regex_exclude
+                    textarea#section_regex_exclude3.form-control(name="section_regex_exclude3", cols="30", rows="5")=data.article_config.regex_exclude.join('\n')
 
     button#add(type="button" class="btn btn-outline-warning btn-rounded waves-effect", style="position:fixed; bottom:10px; right:10px") Update
 
@@ -196,78 +196,78 @@ block js
             var status = $('#status').val()
             var has_subsection = $('#has_subsection').val()
             var main_section_config = {
-                'startsWith' : checkForempty(S($('#section_config_starts').val()).splitLeft(',')).map(function(v){
+                'startsWith' : checkForempty(S($('#section_config_starts').val()).splitLeft('\n')).map(function(v){
                 return S(v).trim().s
             }),
-                'endsWith' : checkForempty(S($('#section_config_ends').val()).splitLeft(',')).map(function(v){
+                'endsWith' : checkForempty(S($('#section_config_ends').val()).splitLeft('\n')).map(function(v){
                 return S(v).trim().s
             }),
-                'containsWith' : checkForempty(S($('#section_config_contains').val()).splitLeft(',')).map(function(v){
+                'containsWith' : checkForempty(S($('#section_config_contains').val()).splitLeft('\n')).map(function(v){
                 return S(v).trim().s
             }),
-                 'exact' : checkForempty(S($('#section_config_exact').val()).splitLeft(',')).map(function(v){
+                 'exact' : checkForempty(S($('#section_config_exact').val()).splitLeft('\n')).map(function(v){
                     return S(v).trim().s
                 }),
-                'accept_only' : checkForempty(S($('#section_config_accept').val()).splitLeft(',')).map(function(v){
+                'accept_only' : checkForempty(S($('#section_config_accept').val()).splitLeft('\n')).map(function(v){
                     return S(v).trim().s
                 }),
-                'regex_include' : checkForempty(S($('#section_regex_include').val()).splitLeft(',')).map(function(v){
+                'regex_include' : checkForempty(S($('#section_regex_include').val()).splitLeft('\n')).map(function(v){
                     return S(v).trim().s
                 }),
-                'regex_exclude' : checkForempty(S($('#section_regex_exclude').val()).splitLeft(',')).map(function(v){
+                'regex_exclude' : checkForempty(S($('#section_regex_exclude').val()).splitLeft('\n')).map(function(v){
                     return S(v).trim().s
                 })
             }
             var sub_section_config = {
-                'startsWith' : checkForempty(S($('#section_config_starts2').val()).splitLeft(',')).map(function(v){
+                'startsWith' : checkForempty(S($('#section_config_starts2').val()).splitLeft('\n')).map(function(v){
                 return S(v).trim().s
             }),
-                'endsWith' : checkForempty(S($('#section_config_ends2').val()).splitLeft(',')).map(function(v){
+                'endsWith' : checkForempty(S($('#section_config_ends2').val()).splitLeft('\n')).map(function(v){
                 return S(v).trim().s
             }),
-                'containsWith' : checkForempty(S($('#section_config_contains2').val()).splitLeft(',')).map(function(v){
+                'containsWith' : checkForempty(S($('#section_config_contains2').val()).splitLeft('\n')).map(function(v){
                 return S(v).trim().s
             }),
-                 'exact' : checkForempty(S($('#section_config_exact2').val()).splitLeft(',')).map(function(v){
+                 'exact' : checkForempty(S($('#section_config_exact2').val()).splitLeft('\n')).map(function(v){
                     return S(v).trim().s
                 }),
-                'accept_only' : checkForempty(S($('#section_config_accept2').val()).splitLeft(',')).map(function(v){
+                'accept_only' : checkForempty(S($('#section_config_accept2').val()).splitLeft('\n')).map(function(v){
                     return S(v).trim().s
                 }),
-                'regex_include' : checkForempty(S($('#section_regex_include2').val()).splitLeft(',')).map(function(v){
+                'regex_include' : checkForempty(S($('#section_regex_include2').val()).splitLeft('\n')).map(function(v){
                     return S(v).trim().s
                 }),
-                'regex_exclude' : checkForempty(S($('#section_regex_exclude2').val()).splitLeft(',')).map(function(v){
+                'regex_exclude' : checkForempty(S($('#section_regex_exclude2').val()).splitLeft('\n')).map(function(v){
                     return S(v).trim().s
                 })
             }
             var article_config = {
-                'startsWith' : checkForempty(S($('#section_config_starts3').val()).splitLeft(',')).map(function(v){
+                'startsWith' : checkForempty(S($('#section_config_starts3').val()).splitLeft('\n')).map(function(v){
                 return S(v).trim().s
             }),
-                'endsWith' : checkForempty(S($('#section_config_ends3').val()).splitLeft(',')).map(function(v){
+                'endsWith' : checkForempty(S($('#section_config_ends3').val()).splitLeft('\n')).map(function(v){
                 return S(v).trim().s
             }),
-                'containsWith' : checkForempty(S($('#section_config_contains3').val()).splitLeft(',')).map(function(v){
+                'containsWith' : checkForempty(S($('#section_config_contains3').val()).splitLeft('\n')).map(function(v){
                 return S(v).trim().s
             }),
-                 'exact' : checkForempty(S($('#section_config_exact3').val()).splitLeft(',')).map(function(v){
+                 'exact' : checkForempty(S($('#section_config_exact3').val()).splitLeft('\n')).map(function(v){
                     return S(v).trim().s
                 }),
-                'accept_only' : checkForempty(S($('#section_config_accept3').val()).splitLeft(',')).map(function(v){
+                'accept_only' : checkForempty(S($('#section_config_accept3').val()).splitLeft('\n')).map(function(v){
                     return S(v).trim().s
                 }),
-                'regex_include' : checkForempty(S($('#section_regex_include3').val()).splitLeft(',')).map(function(v){
+                'regex_include' : checkForempty(S($('#section_regex_include3').val()).splitLeft('\n')).map(function(v){
                     return S(v).trim().s
                 }),
-                'regex_exclude' : checkForempty(S($('#section_regex_exclude3').val()).splitLeft(',')).map(function(v){
+                'regex_exclude' : checkForempty(S($('#section_regex_exclude3').val()).splitLeft('\n')).map(function(v){
                     return S(v).trim().s
                 })
             }
-            var main_sections = checkForempty(S($('#main_sections').val()).splitLeft(',')).map(function(v){
+            var main_sections = checkForempty(S($('#main_sections').val()).splitLeft('\n')).map(function(v){
                 return S(v).trim().s
             })
-            var sub_sections = checkForempty(S($('#sub_sections').val()).splitLeft(',')).map(function(v){
+            var sub_sections = checkForempty(S($('#sub_sections').val()).splitLeft('\n')).map(function(v){
                 return S(v).trim().s
             })
 

@@ -31,6 +31,7 @@ block content
                     tr
                         th #
                         th Article Url
+                        th Article Source Url
                         th Article Status
                         th System Created
                 tbody
@@ -41,6 +42,7 @@ block content
                             td=ct
                             td
                                 a(href=d.article_full_url, target="_blank") #{d.article_full_url}
+                            td=d.article_src_url
                             td=d.article_status
                             td=d.article_date_created_sys_time
 block js

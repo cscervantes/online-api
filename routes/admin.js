@@ -1,9 +1,24 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../models')
+var async = require('async')
 
 router.get('/add', function(req, res, next){
-    res.render('website/add', {title: 'Add new Website', path: req.url})
+    async.waterfall([
+        function(cb){
+            models
+            .filters
+            .findOne({})
+            .exec(function(err, result){
+                if(err) return cb(null, err);
+                else return cb(null, result)
+            })
+        }
+    ], function(err, result){
+        // console.log(result)
+        if(err) next(err);
+        res.render('website/add', {title: 'Add new Website', path: req.url, data: result})
+    })    
 })
 
 router.get('/edit/:id', function(req, res, next){

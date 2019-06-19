@@ -110,30 +110,30 @@ var articleSchema = new Schema({
         },
         default: "0.00"
     },
-    publication_id: [{
+    publication: {
         type: ObjectId,
         ref: 'websites'
-    }],
-    country_id: [{
+    },
+    country: {
         type: ObjectId,
         ref: 'countries'
-    }],
-    author_id: [{
+    },
+    author: {
         type: ObjectId,
         ref: 'authors'
-    }],
-    media_type_id: [{
+    },
+    media_type: {
         type: ObjectId,
         ref: 'media_types'
-    }],
-    section_id: [{
+    },
+    section: {
         type: ObjectId,
         ref: 'sections'
-    }],
-    account_id: [{
+    },
+    account: {
         type: ObjectId,
         ref: 'accounts'
-    }],
+    },
     article_status: {
         type: String,
         enum: ['QUEUED', 'ERROR', 'INVALID', 'DONE'],
