@@ -1,0 +1,27 @@
+extends ../layout
+block css
+
+
+block content
+    h3= title+' '+data._id+' ('+data.article_status+')'
+    .row
+        .col-md-12
+            table.table.table-bordered
+                tr
+                    th ID
+                    td=data._id
+                tr
+                    th Article Source
+                    td=data.article_src_url
+                tr
+                    th Images
+                    td=data.article_img_vid_url
+                tr
+                    th PR Value
+                    td=data.article_pr_value
+                tr
+                    th AD Value
+                    td=data.article_pr_value
+                tr
+                    th Title
+                    td=data.article_title

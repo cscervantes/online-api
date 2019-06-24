@@ -34,6 +34,7 @@ block content
                         th Article Source Url
                         th Article Status
                         th System Created
+                        th OPTIONS
                 tbody
                     - var ct = 0
                     each d in data
@@ -45,4 +46,8 @@ block content
                             td=d.article_src_url
                             td=d.article_status
                             td=d.article_date_created_sys_time
+                            td
+                                a(href="/articles/view/"+d._id) View
+                                a(href="/articles/edit/"+d._id) Edit
+                                a(href="/articles/delete/"+d._id) Delete
 block js
