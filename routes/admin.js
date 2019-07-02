@@ -31,4 +31,8 @@ router.get('/edit/:id', function(req, res, next){
     })
     
 })
+
+router.get('/search_page', function(req, res, next){
+    res.render('website/search', {title:'Search | Add', path: req.url})
+})
 module.exports = router

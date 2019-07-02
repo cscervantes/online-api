@@ -1,0 +1,52 @@
+extends ../layout
+
+block content
+  h1= title
+    .row
+      .col-md
+        .form-group
+          label(for="search")
+          input#search_url.form-control(type="text", name="search_url",  placeholder="Enter or paste valid url")
+        .form-group
+          button#search_btn.btn.btn-default(type="button") Search
+    .row
+      #result.col-md
+
+block js
+  script(src="/javascripts/async.js")
+  script(src="/resources/string/dist/string.min.js")
+  script.
+    var async = require('async')
+    $('button#search_btn').on('click', function(){
+      //- $('#result').html(JSON.stringify(this, null, 4))
+      var search_url = $('#search_url').val().trim()
+      if(search_url){
+        if(S(search_url).startsWith('http:') || S(search_url).startsWith('https:')){
+          async.waterfall([
+            function(cb){
+              $.ajax({
+                'dataType' : "json",
+                'contentType' : "application/json; charset=utf-8",
+                'method': 'POST',
+                'url': '/websites/search',
+                'data': JSON.stringify({'website_url': search_url})
+              }).done(function(response){
+                return cb(null, response)
+              }).fail(function(err){
+                return cb(err)
+              })
+            }
+          ], function(err, result){
+            if(err){
+              $('#result').html(JSON.stringify(err))
+            }else{
+              $('#result').html(`<code><pre>${JSON.stringify(result, null, 4)}</pre></code>`)
+            }
+          })
+        }else{
+          $('#result').html(`<div class="alert alert-warning" role="alert">Not a valid url. Please try again</div>`)
+        }     
+      }else{
+        $('#result').html(`<div class="alert alert-warning" role="alert">The field can't be empty</div>`)
+      }
+    })
